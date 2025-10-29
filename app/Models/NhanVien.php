@@ -2,35 +2,37 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User as Authenticatable; // Rất quan trọng!
-class NhanVien extends Authenticatable
+// Đảm bảo bạn dùng `Authenticatable`
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
+class NhanVien extends Authenticatable // <-- Kế thừa Authenticatable
 {
-    // Tên bảng trong database
-    protected $table = 'NhanVien';
-    // Khóa chính
-    protected $primaryKey = 'idNhanVien';
-    
-    // Các trường có thể gán hàng loạt (Mass Assignable)
-    protected $fillable = [
-        'Ten', 'Pass', 'VaiTro', 'TrangThai', 'SoDienThoai'
-    ];
+    use HasApiTokens, Notifiable;
 
-    // Cấu hình mật khẩu
-    protected $hidden = [
-        'Pass',
-    ];
+    protected $table = 'nhanvien'; 
+    protected $primaryKey = 'idNhanVien'; 
+    public $timestamps = false; 
 
-    // Sửa tên cột mật khẩu
+    /**
+     * Báo cho Laravel biết cột mật khẩu tên là 'Pass'
+     * RẤT QUAN TRỌNG cho Auth::attempt()
+     */
     public function getAuthPassword()
     {
         return $this->Pass;
     }
-    
-    // Thêm hàm kiểm tra quyền Admin
-    public function isAdmin()
-    {
-        return $this->VaiTro === 'Admin' && $this->TrangThai == 1;
-    }
+
+    protected $fillable = [
+        'Ten',
+        'Pass',
+        'VaiTro',
+        'TrangThai',
+        'SoDienThoai',
+    ];
+
+    protected $hidden = [
+        'Pass',
+    ];
 }

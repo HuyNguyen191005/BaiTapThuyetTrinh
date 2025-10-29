@@ -11,14 +11,21 @@
 
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
- <link href="{{ asset('admin/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+   <link href="{{ asset('admin/bower_components/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
 
 <link href="{{ asset('admin/bower_components/metisMenu/dist/metisMenu.min.css') }}" rel="stylesheet">
 
 <link href="{{ asset('admin/dist/css/sb-admin-2.css') }}" rel="stylesheet">
 
 <link href="{{ asset('admin/bower_components/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+<script src="{{ asset('admin/bower_components/jquery/dist/jquery.min.js') }}"></script>
 
+<script src="{{ asset('admin/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+<script src="{{ asset('admin/bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>
+
+<script src="{{ asset('admin/dist/js/sb-admin-2.js') }}"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -246,9 +253,24 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                        </li>
+                        
                     </ul>
+                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
+    @csrf 
+</form>
+
+<ul class="dropdown-menu dropdown-user">
+    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+    </li>
+    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+        <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+            <i class="fa fa-sign-out fa-fw"></i> Logout
+        </a>
+    </li>
+</ul>
                     <!-- /.dropdown-user -->
                 </li>
                 <!-- /.dropdown -->
@@ -368,7 +390,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Trang Admin</h1>
+                        <h1 class="page-header">Blank</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -383,13 +405,17 @@
     <!-- /#wrapper -->
 
 
-   <script src="{{ asset('admin/bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <!-- jQuery -->
+    <script src="admin/bower_components/jquery/dist/jquery.min.js"></script>
 
-<script src="{{ asset('admin/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="admin/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<script src="{{ asset('admin/bower_components/metisMenu/dist/metisMenu.min.js') }}"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="admin/bower_components/metisMenu/dist/metisMenu.min.js"></script>
 
-<script src="{{ asset('admin/dist/js/sb-admin-2.js') }}"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="admin/dist/js/sb-admin-2.js"></script>
 
 </body>
 

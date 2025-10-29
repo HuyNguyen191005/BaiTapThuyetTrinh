@@ -17,7 +17,7 @@
         </div>
         <div class="card-body">
             
-            <form action="{{ route('a.sanpham.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.sanpham.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 {{-- 1. Tên Sản Phẩm --}}
