@@ -15,9 +15,7 @@ use App\Http\Controllers\Admin\SanPhamController;
 
 
 /*
-|--------------------------------------------------------------------------
-| ROUTES DÀNH CHO NGƯỜI DÙNG (FRONT-END)
-|--------------------------------------------------------------------------
+| ROUTES DÀNH CHO NGƯỜI DÙNG
 */
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('sanpham', [BicyclesController::class, 'bicycles'])->name('bicycles.index');
@@ -32,9 +30,7 @@ Route::get('/products', [ProductController::class, 'index'])->name('products.ind
 
 
 /*
-|--------------------------------------------------------------------------
-| ROUTES DÀNH CHO QUẢN TRỊ (ADMIN - PREFIX /a) - KHÔNG CẦN BẢO VỆ
-|--------------------------------------------------------------------------
+ ROUTES DÀNH CHO QUẢN TRỊ (ADMIN - PREFIX /admin) - KHÔNG CẦN BẢO VỆ
 */
 
 Route::prefix('admin')->name('admin.')->group(function () {

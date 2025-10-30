@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-// Đảm bảo bạn dùng `Authenticatable`
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class NhanVien extends Authenticatable // <-- Kế thừa Authenticatable
+class NhanVien extends Authenticatable 
 {
     use HasApiTokens, Notifiable;
 

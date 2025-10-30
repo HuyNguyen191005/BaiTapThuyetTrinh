@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-// Không cần 'use App\Models\NhanVien;' vì Auth::attempt sẽ tự tìm
+
 
 class AdminLoginController extends Controller
 {
@@ -25,7 +25,7 @@ class AdminLoginController extends Controller
      */
     public function login(Request $request)
     {
-        // 1. Validation (Giữ nguyên của bạn)
+
         $request->validate([
             'Ten' => 'required|string', 
             'Pass' => 'required|string', 
@@ -35,9 +35,6 @@ class AdminLoginController extends Controller
         ]);
 
         // 2. Tạo mảng credentials để xác thực
-        // Key 'password' là bắt buộc, Laravel sẽ tự động
-        // lấy giá trị của $request->Pass và so sánh an toàn với cột 'Pass' trong DB
-        // (nhờ hàm getAuthPassword() trong Model NhanVien)
         $credentials = [
             'Ten' => $request->Ten,
             'password' => $request->Pass 
@@ -46,7 +43,7 @@ class AdminLoginController extends Controller
         // 3. Thử đăng nhập trên guard 'admin'
         if (Auth::guard('admin')->attempt($credentials, $request->filled('remember'))) {
             
-            // 4. Đăng nhập thành công, *bây giờ* mới kiểm tra VaiTro và TrangThai
+            // 4. Đăng nhập thành công, kiểm tra VaiTro và TrangThai
             $nhanVien = Auth::guard('admin')->user();
             
             if ($nhanVien->VaiTro === 'admin' && $nhanVien->TrangThai == 1) {
